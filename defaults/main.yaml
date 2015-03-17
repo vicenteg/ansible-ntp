@@ -1,0 +1,48 @@
+---
+
+# Package to be installed (you can force a specific version here)
+ntp_pkg: ntp
+
+# Default service name
+ntp_service: ntpd
+
+# Default location of the ntp.conf file
+ntp_conf_file: /etc/ntp.conf
+
+
+# Default drift file location
+ntp_config_driftfile: /var/lib/ntp/drift
+
+# Default list of NTP servers
+ntp_config_server:
+  - 0.centos.pool.ntp.org
+  - 1.centos.pool.ntp.org
+  - 2.centos.pool.ntp.org
+  - 3.centos.pool.ntp.org
+
+# Default restrictions
+ntp_config_restrict_default:
+  - "-4 default kod notrap nomodify nopeer noquery"
+  - "-6 default kod notrap nomodify nopeer noquery"
+  - 127.0.0.1
+
+# Custom restrictions
+ntp_config_restrict_custom: []
+
+# Default configuration
+ntp_config_default:
+  driftfile: "{{ ntp_config_driftfile }}"
+  server: "{{ ntp_config_server }}"
+  restrict: "{{
+    ntp_config_restrict_default +
+    ntp_config_restrict_custom
+  }}"
+
+
+# Custom configuration
+ntp_config_custom: {}
+
+# Default ntp configuration
+ntp_config: "{{
+  ntp_config_default.update(
+  ntp_config_custom)}}{{ ntp_config_default }}"

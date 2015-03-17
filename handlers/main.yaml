@@ -1,0 +1,6 @@
+---
+
+- name: Restart ntp service
+  service:
+    name: "{{ ntp_service }}"
+    state: restarted
