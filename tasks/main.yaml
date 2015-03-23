@@ -16,7 +16,8 @@
   template:
     src: ntp.conf.j2
     dest: "{{ ntp_conf_file }}"
-  notify: Restart ntp service
+  notify:
+    - Restart ntp service
   tags:
     - ntp_config
 
