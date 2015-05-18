@@ -8,7 +8,7 @@
 - name: Install ntp
   yum:
     name: "{{ ntp_pkg }}"
-    state: installed
+    state: present
   tags:
     - ntp_pkg
 
