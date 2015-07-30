@@ -11,6 +11,7 @@
     state: present
   tags:
     - ntp_pkg
+  environment: proxy_env
 
 - name: Configure ntp
   template:

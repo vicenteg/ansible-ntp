@@ -46,3 +46,5 @@ ntp_config_custom: {}
 ntp_config: "{{
   ntp_config_default.update(
   ntp_config_custom)}}{{ ntp_config_default }}"
+
+proxy_env: { }
