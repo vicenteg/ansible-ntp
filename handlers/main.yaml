@@ -1,6 +1,7 @@
 ---
 
 - name: Restart ntp service
+  sudo_user: root
   service:
     name: "{{ ntp_service }}"
     state: restarted
