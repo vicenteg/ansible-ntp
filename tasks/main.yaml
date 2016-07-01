@@ -6,7 +6,8 @@
       ansible_os_family == "RedHat"
 
 - name: Install ntp
-  sudo_user: root
+  become: yes
+  become_user: root
   yum:
     name: "{{ ntp_pkg }}"
     state: present
@@ -15,7 +16,8 @@
   environment: proxy_env
 
 - name: Configure ntp
-  sudo_user: root
+  become: yes
+  become_user: root
   template:
     src: ntp.conf.j2
     dest: "{{ ntp_conf_file }}"
@@ -25,7 +27,8 @@
     - ntp_config
 
 - name: Make sure ntpd is enabled and running
-  sudo_user: root
+  become: yes
+  become_user: root
   service:
     name: "{{ ntp_service }}"
     enabled: true
